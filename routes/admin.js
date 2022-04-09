@@ -16,6 +16,11 @@ router.get('/view-all-hospitals');
 router.get('/delete-hospital');
 router.get('/edit-hospital');
 
+router.get('/add-college');
+router.get('/view-all-colleges');
+router.get('/delete-college');
+router.get('/edit-college');
+
 
 router.get('/add-Industry');
 router.get('/view-all-Industry');
