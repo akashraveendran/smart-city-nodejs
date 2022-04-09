@@ -1,14 +1,20 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var adminRouter = require('./routes/admin');
+const connectDB = require("./db/connection");
+require("dotenv").config();
+const session = require("express-session");
 
-var app = express();
+const studentRouter = require('./routes/students');
+const touristRouter = require('./routes/tourists');
+const adminRouter = require('./routes/admin');
+const jobSeekerRouter = require('./routes/job-seeksers');
+
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,9 +26,29 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 1000 * 60 * 60 } //max age 1 hour
+}))
+
+async function connect() {
+  try {
+    let url = process.env.MONGO_URI; //connectionn string from .env file
+    await connectDB(url);
+    console.log("DB connected");
+  } catch (error) {
+    console.log(error);
+  }
+}
+connect();
+
+app.use('/', studentRouter);
+app.use('/tourist', touristRouter);
 app.use('/admin', adminRouter);
+app.use('/job-seeker', jobSeekerRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
