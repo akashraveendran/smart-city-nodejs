@@ -1,6 +1,10 @@
 var express = require('express');
 const router = express.Router()
 const {
+    adminLoginPage,
+    adminLogin,
+    adminPanel,
+
     addHotelForm,
     addNewHotel,
     viewAllHotel,
@@ -57,9 +61,9 @@ const {
 } = require("../controllers/admin-controller")
 
 /* GET users listing. */
-router.route('/login');
+router.route('/login').get(adminLoginPage).post(adminLogin);
 router.route('/logout');
-router.route('/');
+router.route('/').get(adminPanel);
 
 router.route('/add-hotel').get(addHotelForm).post(addNewHotel);
 router.route('/view-all-hotels').get(viewAllHotel);

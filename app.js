@@ -13,6 +13,7 @@ const studentRouter = require('./routes/students');
 const touristRouter = require('./routes/tourists');
 const adminRouter = require('./routes/admin');
 const jobSeekerRouter = require('./routes/job-seeksers');
+const { createAdmin } = require('./middleware/createAdmin');
 
 
 const app = express();
@@ -48,7 +49,7 @@ connect();
 
 app.use('/', studentRouter);
 app.use('/tourist', touristRouter);
-app.use('/admin', adminRouter);
+app.use('/admin', createAdmin, adminRouter);
 app.use('/job-seeker', jobSeekerRouter);
 
 

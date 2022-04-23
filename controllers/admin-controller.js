@@ -5,8 +5,41 @@ const IndustryModel = require("../models/industry-model")
 const JobModel = require("../models/job-model")
 const TheaterModel = require("../models/theater-model")
 const LibraryModel = require("../models/library-model")
+const AdminModel = require("../models/admin-model")
+const bcrypt = require("bcrypt");
 
 
+
+
+//login --------------------------------------------------
+const adminLoginPage = async (req, res) => {
+    res.render("admin/login")
+}
+const adminLogin = async (req, res) => {
+    try {
+        // console.log(req.body, req.body.password);
+        let { password } = req.body;
+        const admin = await AdminModel.findOne({ email: req.body.email });
+        if (admin) {
+            const exist = await bcrypt.compare(password, admin.password);
+            if (exist) {
+                req.session.admin = admin;
+                req.session.alertMessage = "Logged In successfully";
+                return res.redirect("/admin")
+            }
+        }
+        req.session.alertMessage = "Invalid admin Credentials";
+        res.redirect("/admin/login");
+    } catch (error) {
+        console.log(error);
+        req.session.alertMessage = "Error Occured. Please Retry !!!";
+        res.redirect("/admin/login")
+    }
+}
+
+const adminPanel = async (req, res) => {
+    res.send("route is live")
+}
 
 //hotel -------------------------------------------------------
 const addHotelForm = (req, res) => {
@@ -473,6 +506,10 @@ const editTravelAgency = async (req, res) => {
 
 
 module.exports = {
+    adminLoginPage,
+    adminLogin,
+    adminPanel,
+
     addJobForm,
     addNewJob,
     viewAllJobs,
