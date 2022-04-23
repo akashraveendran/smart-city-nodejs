@@ -1,5 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+body {
+  /* background: #76b852; fallback for old browsers */
+  /* background: rgb(141,194,111); */
+
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
 .login-page {
   width: 360px;
   padding: 8vh 0 0;
@@ -10,14 +20,15 @@
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  max-width: 360px;
+  max-width: 100%;
   margin: 0 auto 100px;
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.form input {
+.form input,
+textarea {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
@@ -106,15 +117,6 @@
   color: #EF3B3A;
 }
 
-body {
-  /* background: #76b852; fallback for old browsers */
-  /* background: rgb(141,194,111); */
-  background: linear-gradient(90deg, #9D50BB, #6E48AA);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-}
 
 .title {
   color: #9D50BB;

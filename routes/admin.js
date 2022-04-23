@@ -1,55 +1,107 @@
 var express = require('express');
-var router = express.Router();
+const router = express.Router()
+const {
+    addHotelForm,
+    addNewHotel,
+    viewAllHotel,
+    deleteHotel,
+    editHotelForm,
+    editHotel,
+    addHospitalForm,
+    addNewHospital,
+    viewAllHospital,
+    deleteHospital,
+    editHospitalForm,
+    editHospital,
+    addCollegeForm,
+    addNewCollege,
+    viewAllColleges,
+    deleteCollege,
+    editCollegeForm,
+    editCollege,
+
+    addIndustryForm,
+    addNewIndustry,
+    viewAllIndustries,
+    deleteIndustry,
+    editIndustryForm,
+    editIndustry,
+
+    addJobForm,
+    addNewJob,
+    viewAllJobs,
+    deleteJob,
+    editJobForm,
+    editJob,
+
+    addTheaterForm,
+    addNewTheater,
+    viewAllTheaters,
+    deleteTheater,
+    editTheaterForm,
+    editTheater,
+
+    addTravelAgencyForm,
+    addNewTravelAgency,
+    viewAllTravelAgencies,
+    deleteTravelAgency,
+    editTravelAgencyForm,
+    editTravelAgency,
+    addLibraryForm,
+    addNewLibrary,
+    viewAllLibraries,
+    deleteLibrary,
+    editLibraryForm,
+    editLibrary
+
+} = require("../controllers/admin-controller")
 
 /* GET users listing. */
-router.get('/login');
-router.get('/logout');
-router.get('/');
+router.route('/login');
+router.route('/logout');
+router.route('/');
 
-router.get('/add-hotel');
-router.get('/view-all-hotels');
-router.get('/delete-hotel');
-router.get('/edit-hotel');
+router.route('/add-hotel').get(addHotelForm).post(addNewHotel);
+router.route('/view-all-hotels').get(viewAllHotel);
+router.route('/delete-hotel/:id').get(deleteHotel);
+router.route('/edit-hotel/:id').get(editHotelForm).post(editHotel);
 
-router.get('/add-hospital');
-router.get('/view-all-hospitals');
-router.get('/delete-hospital');
-router.get('/edit-hospital');
+router.route('/add-hospital').get(addHospitalForm).post(addNewHospital);
+router.route('/view-all-hospitals').get(viewAllHospital);
+router.route('/delete-hospital/:id').get(deleteHospital);
+router.route('/edit-hospital/:id').get(editHospitalForm).post(editHospital);
 
-router.get('/add-college');
-router.get('/view-all-colleges');
-router.get('/delete-college');
-router.get('/edit-college');
-
-
-router.get('/add-Industry');
-router.get('/view-all-Industry');
-router.get('/delete-Industry');
-router.get('/edit-Industry');
+router.route('/add-college').get(addCollegeForm).post(addNewCollege);
+router.route('/view-all-colleges').get(viewAllColleges);
+router.route('/delete-college/:id').get(deleteCollege);
+router.route('/edit-college/:id').get(editCollegeForm).post(editCollege);
 
 
-router.get('/add-Job');
-router.get('/view-all-Job');
-router.get('/delete-Job');
-router.get('/edit-Job');
+router.route('/add-Industry').get(addIndustryForm).post(addNewIndustry);
+router.route('/view-all-industries').get(viewAllIndustries);
+router.route('/delete-Industry/:id').get(deleteIndustry);
+router.route('/edit-Industry/:id').get(editIndustryForm).post(editIndustry);
 
 
-router.get('/add-Library');
-router.get('/view-all-Library');
-router.get('/delete-Library');
-router.get('/edit-Library');
+router.route('/add-Job').get(addJobForm).post(addNewJob);
+router.route('/view-all-Jobs').get(viewAllJobs);
+router.route('/delete-Job/:id').get(deleteJob)
+router.route('/edit-Job/:id').get(editJobForm).post(editJob);
 
+router.route('/add-library').get(addLibraryForm).post(addNewLibrary);
+router.route('/view-all-libraries').get(viewAllLibraries);
+router.route('/delete-library/:id').get(deleteLibrary)
+router.route('/edit-library/:id').get(editLibraryForm).post(editLibrary);
 
-router.get('/add-Theater');
-router.get('/view-all-Theater');
-router.get('/delete-Theater');
-router.get('/edit-Theater');
-
-
-router.get('/add-Travel-Agency');
-router.get('/view-all-Travel-Agency');
-router.get('/delete-Travel-Agency');
-router.get('/edit-Travel-Agency');
+router.route('/add-theater').get(addTheaterForm).post(addNewTheater);
+router.route('/view-all-theaters').get(viewAllTheaters);
+router.route('/delete-theater/:id').get(deleteTheater)
+router.route('/edit-theater/:id').get(editTheaterForm).post(editTheater);
+//pending
+router.route('/add-travel-agency').get(addTravelAgencyForm).post(addNewTravelAgency);
+router.route('/view-all-travel-agency').get(viewAllTravelAgencies);
+router.route('/delete-travel-agency/:id').get(deleteTravelAgency)
+router.route('/edit-travel-agency/:id').get(editTravelAgencyForm).post(editTravelAgency);
 
 
 module.exports = router;
