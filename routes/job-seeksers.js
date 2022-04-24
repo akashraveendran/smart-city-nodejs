@@ -2,13 +2,17 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get('/signup');
-router.get('/login');
-router.get('/');
-router.get('/logout');
-router.get('/search-jobs');
-router.get('/search-Industries');
-router.get('/search-hospitals');
-router.get("/view-map");
+//controllers
+const { getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchJob, searchHospital, searchIndustry, searchHotels } = require("../controllers/job-seeker-controller")
+const checkJobSeeker = require('../middleware/checkJobSeeker')
+
+router.route('/').get(checkJobSeeker, getHomePage);
+router.route('/signup').get(getSignupPage).post(doSignup);
+router.route('/login').get(getLoginPage).post(doLogin);
+router.route('/logout').get(checkJobSeeker, logout);
+router.route('/search-jobs').get(checkJobSeeker, searchJob);
+router.route('/search-hospitals').get(checkJobSeeker, searchHospital);
+router.route('/search-industries').get(checkJobSeeker, searchIndustry);
+router.route('/search-hotels').get(checkJobSeeker, searchHotels);
 
 module.exports = router;

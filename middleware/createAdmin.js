@@ -1,4 +1,5 @@
 const AdminModel = require("../models/admin-model");
+const bcrypt = require("bcrypt");
 
 module.exports.createAdmin = async (req, res, next) => {
     let admin = await AdminModel.find({});

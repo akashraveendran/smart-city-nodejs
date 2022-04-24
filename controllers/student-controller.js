@@ -1,5 +1,9 @@
 const bcrypt = require("bcrypt");
-const StudentModel = require("../models/student-model")
+const StudentModel = require("../models/student-model");
+const LibraryModel = require("../models/library-model");
+const CollegeModel = require("../models/college-model");
+const HospitalModel = require("../models/hospital-model");
+
 
 const getSignupPage = (req, res) => {
     let alertMessage = req.session.alertMessage
@@ -66,13 +70,19 @@ const logout = (req, res) => {
     req.session.alertMessage = "Logged Out Successfully!!!"
     res.redirect("/")
 }
-const searchLibrary = (req, res) => {
-    res.render("student/view-libraries")
+const searchLibrary = async (req, res) => {
+    let libraries = await LibraryModel.find({})
+    res.render("student/view-libraries", { libraries })
 }
-const searchColleges = (req, res) => {
-    res.render("student/view-colleges")
+const searchColleges = async (req, res) => {
+    let colleges = await CollegeModel.find({})
+    res.render("student/view-colleges", { colleges })
+}
+const searchHosptals = async (req, res) => {
+    let hospitals = await HospitalModel.find({})
+    res.render("student/view-hospitals", { hospitals })
 }
 
 
 
-module.exports = { getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchLibrary, searchColleges }
+module.exports = { getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchLibrary, searchColleges, searchHosptals }

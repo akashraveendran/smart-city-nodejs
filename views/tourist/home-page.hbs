@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(to right,#9D50BB, #6E48AA);">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(to right,#F2994A,#F2C94C);">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="font-size: 33px;">Welcome {{student.username}}</a>
+        <a class="navbar-brand" href="#" style="font-size: 33px;">Welcome {{tourist.username}}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,19 +11,22 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/search-colleges">Colleges</a>
+                    <a class="nav-link active" aria-current="page" href="/tourist/search-hospitals">Hospitals</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/search-libraries">Libraries</a>
+                    <a class="nav-link active" aria-current="page" href="/tourist/search-hotels">Hotels</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/search-hospitals">Hospitals</a>
+                    <a class="nav-link active" aria-current="page" href="/tourist/search-theaters">Theaters</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/tourist/search-libraries">Libraries</a>
                 </li>
 
             </ul>
-            <div class="d-flex">
-                <a href="/logout"><button class="btn btn-danger">Logout</button></a>
-            </div>
+            <form class="d-flex">
+                <a href="/tourist/logout"> <button class="btn btn-outline-danger" type="submit">Logout</button></a>
+            </form>
         </div>
     </div>
 </nav>
@@ -81,7 +84,7 @@
         </p>
     </div>
 </section>
-<section id="map" style="background: linear-gradient(to right,#9D50BB, #6E48AA);">
+<section id="map" style="background: linear-gradient(to right,#F2994A,#F2C94C);">
     <div class="container d-flex flex-column justify-content-space-around" style="height: 100vh;">
         <h2 class="title mt-5 mb-5" style="text-align: center;">
             Find Our City

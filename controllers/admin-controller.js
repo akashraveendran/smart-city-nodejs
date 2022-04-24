@@ -9,22 +9,26 @@ const AdminModel = require("../models/admin-model")
 const bcrypt = require("bcrypt");
 
 
-
-
 //login --------------------------------------------------
 const adminLoginPage = async (req, res) => {
-    res.render("admin/login")
+    if (req.session.alertMessage) {
+
+        let { alertMessage } = req.session;
+        res.render("admin/login", { alertMessage })
+        delete req.session.alertMessage
+    } else {
+        res.render("admin/login")
+    }
 }
 const adminLogin = async (req, res) => {
     try {
-        // console.log(req.body, req.body.password);
+        console.log(req.body, req.body.password);
         let { password } = req.body;
         const admin = await AdminModel.findOne({ email: req.body.email });
         if (admin) {
             const exist = await bcrypt.compare(password, admin.password);
             if (exist) {
                 req.session.admin = admin;
-                req.session.alertMessage = "Logged In successfully";
                 return res.redirect("/admin")
             }
         }
@@ -37,8 +41,29 @@ const adminLogin = async (req, res) => {
     }
 }
 
-const adminPanel = async (req, res) => {
-    res.send("route is live")
+const adminDashboard = async (req, res) => {
+    let { admin, alertMessage } = req.session;
+    try {
+        let count = {};
+        count.hotel = await HotelModel.count();
+        count.hospital = await HospitalModel.count();
+        count.college = await CollegeModel.count();
+        count.library = await LibraryModel.count();
+        count.job = await JobModel.count();
+        count.theater = await TheaterModel.count();
+        count.library = await LibraryModel.count();
+        count.industry = await IndustryModel.count();
+        res.render('admin/01-admin-dashboard', { admin, count, alertMessage })
+        delete req.session.alertMessage;
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+const adminLogout = async (req, res) => {
+    delete req.session.admin;
+    req.session.alertMessage = "Logged out successfully";
+    res.redirect('/admin/login')
 }
 
 //hotel -------------------------------------------------------
@@ -485,7 +510,7 @@ const editLibrary = async (req, res) => {
 
 //TravelAgency --------------------------------------
 const addTravelAgencyForm = async (req, res) => {
-    res.send("route is live")
+    res.render("admin/add-new-agency")
 }
 const addNewTravelAgency = async (req, res) => {
     res.send("route is live")
@@ -508,7 +533,8 @@ const editTravelAgency = async (req, res) => {
 module.exports = {
     adminLoginPage,
     adminLogin,
-    adminPanel,
+    adminDashboard,
+    adminLogout,
 
     addJobForm,
     addNewJob,

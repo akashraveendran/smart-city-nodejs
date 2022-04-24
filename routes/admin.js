@@ -3,7 +3,7 @@ const router = express.Router()
 const {
     adminLoginPage,
     adminLogin,
-    adminPanel,
+    adminDashboard,
 
     addHotelForm,
     addNewHotel,
@@ -56,56 +56,90 @@ const {
     viewAllLibraries,
     deleteLibrary,
     editLibraryForm,
-    editLibrary
+    editLibrary,
+    adminLogout
 
-} = require("../controllers/admin-controller")
+} = require("../controllers/admin-controller");
+const checkAdmin = require("../middleware/checkAdmin")
 
 /* GET users listing. */
 router.route('/login').get(adminLoginPage).post(adminLogin);
-router.route('/logout');
-router.route('/').get(adminPanel);
+router.route('/logout').get(adminLogout);
+router.route('/').get(checkAdmin, adminDashboard);
 
-router.route('/add-hotel').get(addHotelForm).post(addNewHotel);
-router.route('/view-all-hotels').get(viewAllHotel);
-router.route('/delete-hotel/:id').get(deleteHotel);
-router.route('/edit-hotel/:id').get(editHotelForm).post(editHotel);
+router.route('/add-hotel').get(checkAdmin, addHotelForm).post(checkAdmin, addNewHotel);
+router.route('/view-all-hotels').get(checkAdmin, viewAllHotel);
+router.route('/delete-hotel/:id').get(checkAdmin, deleteHotel);
+router.route('/edit-hotel/:id').get(checkAdmin, editHotelForm).post(checkAdmin, editHotel);
 
-router.route('/add-hospital').get(addHospitalForm).post(addNewHospital);
-router.route('/view-all-hospitals').get(viewAllHospital);
-router.route('/delete-hospital/:id').get(deleteHospital);
-router.route('/edit-hospital/:id').get(editHospitalForm).post(editHospital);
+router.route('/add-hospital').get(checkAdmin, addHospitalForm).post(checkAdmin, addNewHospital);
+router.route('/view-all-hospitals').get(checkAdmin, viewAllHospital);
+router.route('/delete-hospital/:id').get(checkAdmin, deleteHospital);
+router.route('/edit-hospital/:id').get(checkAdmin, editHospitalForm).post(checkAdmin, editHospital);
 
-router.route('/add-college').get(addCollegeForm).post(addNewCollege);
-router.route('/view-all-colleges').get(viewAllColleges);
-router.route('/delete-college/:id').get(deleteCollege);
-router.route('/edit-college/:id').get(editCollegeForm).post(editCollege);
-
-
-router.route('/add-Industry').get(addIndustryForm).post(addNewIndustry);
-router.route('/view-all-industries').get(viewAllIndustries);
-router.route('/delete-Industry/:id').get(deleteIndustry);
-router.route('/edit-Industry/:id').get(editIndustryForm).post(editIndustry);
+router.route('/add-college').get(checkAdmin, addCollegeForm).post(checkAdmin, addNewCollege);
+router.route('/view-all-colleges').get(checkAdmin, viewAllColleges);
+router.route('/delete-college/:id').get(checkAdmin, deleteCollege);
+router.route('/edit-college/:id').get(checkAdmin, editCollegeForm).post(checkAdmin, editCollege);
 
 
-router.route('/add-Job').get(addJobForm).post(addNewJob);
-router.route('/view-all-Jobs').get(viewAllJobs);
-router.route('/delete-Job/:id').get(deleteJob)
-router.route('/edit-Job/:id').get(editJobForm).post(editJob);
+router.route('/add-Industry').get(checkAdmin, addIndustryForm).post(checkAdmin, addNewIndustry);
+router.route('/view-all-industries').get(checkAdmin, viewAllIndustries);
+router.route('/delete-Industry/:id').get(checkAdmin, deleteIndustry);
+router.route('/edit-Industry/:id').get(checkAdmin, editIndustryForm).post(checkAdmin, editIndustry);
 
-router.route('/add-library').get(addLibraryForm).post(addNewLibrary);
-router.route('/view-all-libraries').get(viewAllLibraries);
-router.route('/delete-library/:id').get(deleteLibrary)
-router.route('/edit-library/:id').get(editLibraryForm).post(editLibrary);
 
-router.route('/add-theater').get(addTheaterForm).post(addNewTheater);
-router.route('/view-all-theaters').get(viewAllTheaters);
-router.route('/delete-theater/:id').get(deleteTheater)
-router.route('/edit-theater/:id').get(editTheaterForm).post(editTheater);
-//pending
-router.route('/add-travel-agency').get(addTravelAgencyForm).post(addNewTravelAgency);
-router.route('/view-all-travel-agency').get(viewAllTravelAgencies);
-router.route('/delete-travel-agency/:id').get(deleteTravelAgency)
-router.route('/edit-travel-agency/:id').get(editTravelAgencyForm).post(editTravelAgency);
+router.route('/add-Job').get(checkAdmin, addJobForm).post(checkAdmin, addNewJob);
+router.route('/view-all-Jobs').get(checkAdmin, viewAllJobs);
+router.route('/delete-Job/:id').get(checkAdmin, deleteJob)
+router.route('/edit-Job/:id').get(checkAdmin, editJobForm).post(checkAdmin, editJob);
 
+router.route('/add-library').get(checkAdmin, addLibraryForm).post(checkAdmin, addNewLibrary);
+router.route('/view-all-libraries').get(checkAdmin, viewAllLibraries);
+router.route('/delete-library/:id').get(checkAdmin, deleteLibrary)
+router.route('/edit-library/:id').get(checkAdmin, editLibraryForm).post(checkAdmin, editLibrary);
+
+router.route('/add-theater').get(checkAdmin, addTheaterForm).post(checkAdmin, addNewTheater);
+router.route('/view-all-theaters').get(checkAdmin, viewAllTheaters);
+router.route('/delete-theater/:id').get(checkAdmin, deleteTheater)
+router.route('/edit-theater/:id').get(checkAdmin, editTheaterForm).post(checkAdmin, editTheater);
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// router.route('/add-travel-agency').get(checkAdmin, addTravelAgencyForm).post(checkAdmin, addNewTravelAgency);
+// router.route('/view-all-travel-agency').get(checkAdmin, viewAllTravelAgencies);
+// router.route('/delete-travel-agency/:id').get(checkAdmin, deleteTravelAgency)
+// router.route('/edit-travel-agency/:id').get(checkAdmin, editTravelAgencyForm).post(checkAdmin, editTravelAgency);
+

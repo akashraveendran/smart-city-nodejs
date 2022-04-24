@@ -7,10 +7,10 @@
 
 <div class="login-page" style="width: 80vw">
     <div class="form">
-        <div style="display: flex;justify-content: space-between;">
-            <span></span>
+        <div style="display: flex;justify-content: space-between;margin-bottom:15px">
+            <a href="/admin"><button style="background: rgb(206, 16, 16);"> Back</button></a>
             <h2 class="title" style="color: #2c3e50;"> Libraries List</h2>
-            <a href="/admin/add-library"><button> Add New library</button></a>
+            <a href="/admin/add-library"><button style="background: rgb(16, 206, 102);"> Add New library</button></a>
         </div>
         <table id="main_table">
             <thead>
@@ -33,7 +33,7 @@
                             onclick="return confirm('Are you sure you want to delete this library?');"><button
                                 class="btn" style="background: red;">delete</button></a>
                         <a href="/admin/edit-library/{{_id}}"><button class="btn"
-                                style="background: rgb(67, 199, 67);">Edit</button></a>
+                                style="background: rgb(106, 79, 255);">Edit</button></a>
                     </td>
                 </tr>
                 {{/each}}

@@ -7,8 +7,8 @@
 
 <div class="login-page" style="width: 80vw">
     <div class="form">
-        <div style="display: flex;justify-content: space-between;">
-            <span></span>
+        <div style="display: flex;justify-content: space-between;margin-bottom:15px">
+            <a href="/admin"><button style="background: rgb(206, 16, 16);"> Back</button></a>
             <h2 class="title" style="color: #2c3e50;"> Jobs List</h2>
             <a href="/admin/add-job"><button> Add New job</button></a>
         </div>
@@ -35,7 +35,7 @@
                             onclick="return confirm('Are you sure you want to delete this job?');"><button class="btn"
                                 style="background: red;">delete</button></a>
                         <a href="/admin/edit-job/{{_id}}"><button class="btn"
-                                style="background: rgb(67, 199, 67);">Edit</button></a>
+                                style="background: rgb(62, 128, 204);">Edit</button></a>
                     </td>
                 </tr>
                 {{/each}}
