@@ -11,7 +11,7 @@ const IndustrySchema = new mongoose.Schema({
         type: String,
         required: [true, "Must Provide email"],
         trim: true,
-        maxlength: [25, "email cannot be more than 25 characters"],
+        maxlength: [50, "email cannot be more than 50 characters"],
         unique: true
     },
     phone: {

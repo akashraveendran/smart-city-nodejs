@@ -60,7 +60,7 @@ const getHomePage = function (req, res, next) {
         res.render('student/home-page', { title: 'Smart city', student, alertMessage });
         delete req.session.alertMessage;
     } else {
-        res.render('student/home-page', { title: 'Smart city', alertMessage });
+        res.render('home-page', { title: 'Smart city', alertMessage });
         delete req.session.alertMessage;
     }
 }

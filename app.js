@@ -38,7 +38,7 @@ app.use(session({
 
 async function connect() {
   try {
-    let url = process.env.MONGO_URI; //connectionn string from .env file
+    let url = process.env.MONGO_URI; //connection string from .env file
     await connectDB(url);
     console.log("DB connected");
   } catch (error) {

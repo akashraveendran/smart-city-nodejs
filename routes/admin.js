@@ -57,7 +57,10 @@ const {
     deleteLibrary,
     editLibraryForm,
     editLibrary,
-    adminLogout
+    adminLogout,
+    viewAllStudents,
+    viewAllJobSeekers,
+    viewAllTourists
 
 } = require("../controllers/admin-controller");
 const checkAdmin = require("../middleware/checkAdmin")
@@ -66,6 +69,10 @@ const checkAdmin = require("../middleware/checkAdmin")
 router.route('/login').get(adminLoginPage).post(adminLogin);
 router.route('/logout').get(adminLogout);
 router.route('/').get(checkAdmin, adminDashboard);
+
+router.route('/view-all-students').get(checkAdmin, viewAllStudents);
+router.route('/view-all-job-seekers').get(checkAdmin, viewAllJobSeekers);
+router.route('/view-all-tourists').get(checkAdmin, viewAllTourists);
 
 router.route('/add-hotel').get(checkAdmin, addHotelForm).post(checkAdmin, addNewHotel);
 router.route('/view-all-hotels').get(checkAdmin, viewAllHotel);
@@ -105,41 +112,3 @@ router.route('/delete-theater/:id').get(checkAdmin, deleteTheater)
 router.route('/edit-theater/:id').get(checkAdmin, editTheaterForm).post(checkAdmin, editTheater);
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// router.route('/add-travel-agency').get(checkAdmin, addTravelAgencyForm).post(checkAdmin, addNewTravelAgency);
-// router.route('/view-all-travel-agency').get(checkAdmin, viewAllTravelAgencies);
-// router.route('/delete-travel-agency/:id').get(checkAdmin, deleteTravelAgency)
-// router.route('/edit-travel-agency/:id').get(checkAdmin, editTravelAgencyForm).post(checkAdmin, editTravelAgency);
-

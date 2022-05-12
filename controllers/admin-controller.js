@@ -7,6 +7,9 @@ const TheaterModel = require("../models/theater-model")
 const LibraryModel = require("../models/library-model")
 const AdminModel = require("../models/admin-model")
 const bcrypt = require("bcrypt");
+const StudentModel = require("../models/student-model")
+const JobSeekerModel = require("../models/job-seeker-model")
+const TouristModel = require("../models/tourist-model")
 
 
 //login --------------------------------------------------
@@ -53,6 +56,9 @@ const adminDashboard = async (req, res) => {
         count.theater = await TheaterModel.count();
         count.library = await LibraryModel.count();
         count.industry = await IndustryModel.count();
+        count.student = await StudentModel.count();
+        count.jobSeeker = await JobSeekerModel.count();
+        count.tourist = await TouristModel.count();
         res.render('admin/01-admin-dashboard', { admin, count, alertMessage })
         delete req.session.alertMessage;
 
@@ -64,6 +70,31 @@ const adminLogout = async (req, res) => {
     delete req.session.admin;
     req.session.alertMessage = "Logged out successfully";
     res.redirect('/admin/login')
+}
+
+const viewAllStudents = async (req, res) => {
+    try {
+        const students = await StudentModel.find({})
+        res.render("admin/view-all-students", { students })
+    } catch (error) {
+        console.log(error)
+    }
+}
+const viewAllJobSeekers = async (req, res) => {
+    try {
+        const jobSeekers = await JobSeekerModel.find({})
+        res.render("admin/view-all-job-seekers", { jobSeekers })
+    } catch (error) {
+        console.log(error)
+    }
+}
+const viewAllTourists = async (req, res) => {
+    try {
+        const tourists = await TouristModel.find({})
+        res.render("admin/view-all-tourists", { tourists })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 //hotel -------------------------------------------------------
@@ -584,4 +615,7 @@ module.exports = {
     deleteTravelAgency,
     editTravelAgencyForm,
     editTravelAgency,
+    viewAllStudents,
+    viewAllJobSeekers,
+    viewAllTourists
 }

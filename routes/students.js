@@ -9,7 +9,7 @@ const checkStudent = require('../middleware/checkStudent')
 
 
 
-router.route('/').get(checkStudent, getHomePage);
+router.route('/').get(getHomePage);
 router.route('/signup').get(getSignupPage).post(doSignup);
 router.route('/login').get(getLoginPage).post(doLogin);
 router.route('/logout').get(checkStudent, logout);

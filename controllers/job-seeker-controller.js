@@ -69,7 +69,7 @@ const getHomePage = function (req, res, next) {
 const logout = (req, res) => {
     req.session.jobSeeker = null;
     req.session.alertMessage = "Logged Out Successfully!!!"
-    res.redirect("/")
+    res.redirect("/job-seeker")
 }
 const searchJob = async (req, res) => {
     let jobs = await JobModel.find({})

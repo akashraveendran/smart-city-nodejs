@@ -8,6 +8,10 @@
     </div>
     <ul>
         <!--icon is there before text-->
+        <li><a href="/admin/view-all-students"> <i class="fa-solid fa-hotel"></i>&nbsp; <span>Students</span> </a></li>
+        <li><a href="/admin/view-all-job-seekers"> <i class="fa-solid fa-hotel"></i>&nbsp; <span>Job Seekers</span> </a>
+        </li>
+        <li><a href="/admin/view-all-tourists"> <i class="fa-solid fa-hotel"></i>&nbsp; <span>Tourists</span> </a></li>
         <li><a href="/admin/view-all-hotels"> <i class="fa-solid fa-hotel"></i>&nbsp; <span>Hotels</span> </a></li>
         <li><a href="/admin/view-all-hospitals"> <i class="fas fa-hospital"></i>&nbsp; <span>hospitals</span> </a></li>
         <li><a href="/admin/view-all-colleges"><i class="fa-solid fa-building-columns"></i>&nbsp; <span>Colleges</span>
@@ -43,6 +47,33 @@
     </div>
     <div class="content">
         <div class="cards">
+            <div class="card">
+                <div class="box">
+                    <h1>{{count.student}}</h1>
+                    <h3>All Students</h3>
+                </div>
+                <div class="icon-case">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <h1>{{count.tourist}}</h1>
+                    <h3>Tourists</h3>
+                </div>
+                <div class="icon-case">
+                    <i class="fa-solid fa-people-pulling"></i>
+                </div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <h1>{{count.jobSeeker}}</h1>
+                    <h3>Job Seekers</h3>
+                </div>
+                <div class="icon-case">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+            </div>
             <div class="card">
                 <div class="box">
                     <h1>{{count.hotel}}</h1>
