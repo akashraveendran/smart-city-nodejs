@@ -92,8 +92,41 @@ const searchLibrary = async (req, res) => {
     let libraries = await LibraryModel.find({})
     res.render("tourist/view-libraries", { libraries })
 }
+const searchByCategory = async (req, res) => {
+    console.log(req.body)
+    let { category, content } = req.body;
+    switch (category) {
+        case 'libraries':
+            let libraries = await LibraryModel.find({ libraryName: { $regex: content, $options: 'i' } })
+            console.log(libraries)
+            if (libraries.length == 0) { libraries = false; }
+            return res.render("tourist/view-libraries", { libraries })
+            break;
+        case 'theaters':
+            let theaters = await TheaterModel.find({ theaterName: { $regex: content, $options: 'i' } })
+            console.log(theaters)
+            if (theaters.length == 0) { theaters = false; }
+            return res.render("tourist/view-theaters", { theaters })
+            break;
+        case 'hotels':
+            let hotels = await HotelModel.find({ hotelName: { $regex: content, $options: 'i' } })
+            console.log(hotels)
+            if (hotels.length == 0) { hotels = false; }
+            return res.render("tourist/view-hotels", { hotels })
+            break;
+        case 'hospitals':
+            let hospitals = await HospitalModel.find({ hospitalName: { $regex: content, $options: 'i' } })
+            console.log(hospitals)
+            if (hospitals.length == 0) { hospitals = false; }
+            return res.render("tourist/view-hospitals", { hospitals })
+            break;
+        default:
+            req.session.alertMessage = "No results Found";
+            res.redirect('/')
+    }
+}
 
 
 
 
-module.exports = { getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchHotel, searchHospital, searchTheater, searchLibrary }
+module.exports = { searchByCategory, getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchHotel, searchHospital, searchTheater, searchLibrary }
