@@ -78,18 +78,22 @@ const logout = (req, res) => {
 }
 const searchHotel = async (req, res) => {
     let hotels = await HotelModel.find({})
+    if (hotels.length == 0) { hotels = false; }
     res.render("tourist/view-hotels", { hotels })
 }
 const searchHospital = async (req, res) => {
     let hospitals = await HospitalModel.find({})
+    if (hospitals.length == 0) { hospitals = false; }
     res.render("tourist/view-hospitals", { hospitals })
 }
 const searchTheater = async (req, res) => {
     let theaters = await TheaterModel.find({})
+    if (theaters.length == 0) { theaters = false; }
     res.render("tourist/view-theaters", { theaters })
 }
 const searchLibrary = async (req, res) => {
     let libraries = await LibraryModel.find({})
+    if (libraries.length == 0) { libraries = false; }
     res.render("tourist/view-libraries", { libraries })
 }
 const searchByCategory = async (req, res) => {

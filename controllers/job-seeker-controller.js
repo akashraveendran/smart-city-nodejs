@@ -73,18 +73,22 @@ const logout = (req, res) => {
 }
 const searchJob = async (req, res) => {
     let jobs = await JobModel.find({})
+    if (jobs.length == 0) { jobs = false; }
     res.render("job-seeker/view-jobs", { jobs })
 }
 const searchHospital = async (req, res) => {
     let hospitals = await HospitalModel.find({})
+    if (hospitals.length == 0) { hospitals = false; }
     res.render("job-seeker/view-hospitals", { hospitals })
 }
 const searchIndustry = async (req, res) => {
     let industry = await IndustryModel.find({})
+    if (industry.length == 0) { industry = false; }
     res.render("job-seeker/view-industry", { industry })
 }
 const searchHotels = async (req, res) => {
     let hotels = await HotelModel.find({})
+    if (hotels.length == 0) { hotels = false; }
     res.render("job-seeker/view-hotels", { hotels })
 }
 const searchByCategory = async (req, res) => {

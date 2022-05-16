@@ -72,14 +72,17 @@ const logout = (req, res) => {
 }
 const searchLibrary = async (req, res) => {
     let libraries = await LibraryModel.find({})
+    if (libraries.length == 0) { libraries = false; }
     res.render("student/view-libraries", { libraries })
 }
 const searchColleges = async (req, res) => {
     let colleges = await CollegeModel.find({})
+    if (colleges.length == 0) { colleges = false; }
     res.render("student/view-colleges", { colleges })
 }
 const searchHosptals = async (req, res) => {
     let hospitals = await HospitalModel.find({})
+    if (hospitals.length == 0) { hospitals = false; }
     res.render("student/view-hospitals", { hospitals })
 }
 const searchByCategory = async (req, res) => {
