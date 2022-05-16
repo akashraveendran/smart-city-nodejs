@@ -109,8 +109,7 @@ const searchByCategory = async (req, res) => {
             res.redirect('/')
 
     }
-    // let hospitals = await HospitalModel.find({})
-    // res.render("student/view-hospitals", { hospitals })
+
 }
 
 

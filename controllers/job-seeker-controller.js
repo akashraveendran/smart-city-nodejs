@@ -87,8 +87,42 @@ const searchHotels = async (req, res) => {
     let hotels = await HotelModel.find({})
     res.render("job-seeker/view-hotels", { hotels })
 }
+const searchByCategory = async (req, res) => {
+    console.log(req.body)
+    let { category, content } = req.body;
+    switch (category) {
+        case 'industries':
+            let industry = await IndustryModel.find({ industryName: { $regex: content, $options: 'i' } })
+            console.log(industry)
+            if (industry.length == 0) { industry = false; }
+            return res.render("job-seeker/view-industry", { industry })
+            break;
+        case 'hotels':
+            let hotels = await HotelModel.find({ hotelName: { $regex: content, $options: 'i' } })
+            console.log(hotels)
+            if (hotels.length == 0) { hotels = false; }
+            return res.render("job-seeker/view-hotels", { hotels })
+            break;
+        case 'jobs':
+            let jobs = await JobModel.find({ jobName: { $regex: content, $options: 'i' } })
+            console.log(jobs)
+            if (jobs.length == 0) { jobs = false; }
+            return res.render("job-seeker/view-jobs", { jobs })
+            break;
+        case 'hospitals':
+            let hospitals = await HospitalModel.find({ hospitalName: { $regex: content, $options: 'i' } })
+            console.log(hospitals)
+            if (hospitals.length == 0) { hospitals = false; }
+            return res.render("job-seeker/view-hospitals", { hospitals })
+            break;
+        default:
+            req.session.alertMessage = "No results Found";
+            res.redirect('/')
+
+    }
+}
 
 
 
 
-module.exports = { getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchJob, searchHospital, searchIndustry, searchHotels }
+module.exports = { searchByCategory, getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchJob, searchHospital, searchIndustry, searchHotels }
