@@ -82,7 +82,37 @@ const searchHosptals = async (req, res) => {
     let hospitals = await HospitalModel.find({})
     res.render("student/view-hospitals", { hospitals })
 }
+const searchByCategory = async (req, res) => {
+    console.log(req.body)
+    let { category, content } = req.body;
+    switch (category) {
+        case 'colleges':
+            let colleges = await CollegeModel.find({ collegeName: { $regex: content, $options: 'i' } })
+            console.log(colleges)
+            if (colleges.length == 0) { colleges = false; }
+            return res.render("student/view-colleges", { colleges })
+            break;
+        case 'libraries':
+            let libraries = await LibraryModel.find({ libraryName: { $regex: content, $options: 'i' } })
+            console.log(libraries)
+            if (libraries.length == 0) { libraries = false; }
+            return res.render("student/view-libraries", { libraries })
+            break;
+        case 'hospitals':
+            let hospitals = await HospitalModel.find({ hospitalName: { $regex: content, $options: 'i' } })
+            console.log(hospitals)
+            if (hospitals.length == 0) { hospitals = false; }
+            return res.render("student/view-hospitals", { hospitals })
+            break;
+        default:
+            req.session.alertMessage = "No results Found";
+            res.redirect('/')
+
+    }
+    // let hospitals = await HospitalModel.find({})
+    // res.render("student/view-hospitals", { hospitals })
+}
 
 
 
-module.exports = { getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchLibrary, searchColleges, searchHosptals }
+module.exports = { searchByCategory, getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchLibrary, searchColleges, searchHosptals }

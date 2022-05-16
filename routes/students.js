@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //CONTROLLER
-const { getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchLibrary, searchColleges, searchHosptals } = require("../controllers/student-controller")
+const { getSignupPage, doSignup, getLoginPage, doLogin, getHomePage, logout, searchLibrary, searchColleges, searchHosptals, searchByCategory } = require("../controllers/student-controller")
 
 //middleware for authentication
 const checkStudent = require('../middleware/checkStudent')
@@ -16,6 +16,8 @@ router.route('/logout').get(checkStudent, logout);
 router.route('/search-libraries').get(checkStudent, searchLibrary);
 router.route('/search-Colleges').get(checkStudent, searchColleges);
 router.route('/search-hospitals').get(checkStudent, searchHosptals);
+router.route('/search').post(checkStudent, searchByCategory);
+
 
 
 
